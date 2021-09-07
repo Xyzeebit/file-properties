@@ -1,32 +1,135 @@
 .App {
+  margin: 0 auto;
+}
+.header {
   text-align: center;
+  font-weight: bold;
+  font-size: 45px;
+  padding-top: 10px;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.file-upload-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid #4778e5;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.extension-image {
+  width: 98px;
+  height: 98px;
+  border: 2px solid #4778e5;
+  border-radius: 50%;
+  /* ----- */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.extension-image span {
+  font-weight: bolder;
+  font-size: 50px;
+  color: #ccc;
+}
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+input {
+  padding: 10px;
+  margin: 10px;
+}
+input[type="file"] {
+  border: 2px solid #4778e5;
+  
+}
+.submit-button {
+  border: 2px solid #4778e5;
+  border-radius: 5px;
   color: white;
+  background-color: #09568d;
+  width: 70px;
+  cursor: pointer;
+}
+.progressbar {
+  width: 300px;
+  height: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: none;
+}
+.progress-text{
+  font-weight: bold;
+  color: #ccc;
+}
+.file-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 2px solid #4778e5;
+  padding: 20px;
+}
+.file {
+  width: 400px;
+  border-radius: 5px;
+  border: 2px solid #4778e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+  margin: 10px;
+}
+.props span {
+  /* align-self: center; */
+  position: absolute;
+  color: #d3341f;
+}
+.extension {
+  text-align: center;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 2px solid #09568d;
+  color: #d3341f;
+  background-color: #fff;
+  border-radius: 20%;
+  z-index: 1;
+  /* margin-top: 40px; */
+  margin-left: 70px; 
+  margin-bottom: 5px;
+  align-self: flex-end;
+  font-size: 10px;
+}
+table {
+  width: 400px;
+}
+table, tr, td {
+    border: 1px solid #09568d;
+    border-collapse: collapse;
+}
+tr, td {
+    padding: 5px;
+    text-align: left;
 }
 
-.App-link {
-  color: #61dafb;
+.delete-button {
+  border: 2px solid #4778e5;
+  border-radius: 5px;
+  color: white;
+  background-color: #d3341f;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 70px;
+  cursor: pointer;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.delete-button:hover {
+  background-color: #09568d;
+}
+.empty-list {
+  font-weight: bold;
 }
