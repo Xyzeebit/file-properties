@@ -55,16 +55,4 @@ const FileInfo = ({ id, name, extension, size, type, lastModified, deleteFile })
     );
 }
 
-function readProp() {
-//     <!-- The `multiple` attribute lets users select multiple files. -->
-// <input type="file" id="file-selector" multiple>
-// <script>
-//   const fileSelector = document.getElementById('file-selector');
-//   fileSelector.addEventListener('change', (event) => {
-//     const fileList = event.target.files;
-//     console.log(fileList);
-//   });
-// </script>
-}
-
 export default FileListProperties;
