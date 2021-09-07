@@ -84,7 +84,7 @@ const FileUploader = ({ addToFilePropList }) => {
             width: `${barWidth}%`
         }
     };
-    console.log('rendering uploader'); // useMemo
+
     return (
         <div className="file-upload-panel">
             <div className="extension-image"><span><i className={`fa fa-file-${extension}`} /></span></div>

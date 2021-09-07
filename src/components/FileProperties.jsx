@@ -3,7 +3,6 @@ import React from 'react';
 import moment from 'moment';
 
 const FileListProperties = ({ data, deleteFile }) => {
-    console.log('rendering prop list');
     return (
         <div className="file-list">
             {   (data.length > 0) ?
