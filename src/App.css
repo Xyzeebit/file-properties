@@ -131,5 +131,5 @@ tr, td {
   background-color: #09568d;
 }
 .empty-list {
-  font-weight: bold;
+  font-weight: bold; color: #ccc;
 }
