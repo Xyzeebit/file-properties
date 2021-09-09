@@ -35,7 +35,7 @@ const FileInfo = ({ id, name, extension, size, type, lastModified, deleteFile })
                     </tr>
                     <tr>
                         <td>Size</td>
-                        <td>{(size / 1024).toFixed(4)}kb</td>
+                        <td>{(size / 1024).toFixed(2)}kb</td>
                     </tr>
                     <tr>
                         <td>Type</td>
