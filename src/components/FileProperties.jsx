@@ -22,7 +22,7 @@ const FileInfo = ({ id, name, extension, size, type, lastModified, deleteFile })
     return (
         <div className="file">
             <div className="extension-image props">
-                <span><i className={`fa fa-file-${extension}`} /></span>
+                <span><i className={`fa fa-${extension}`} /></span>
                 <div className="extension">{ fileType }</div>
             </div>
             

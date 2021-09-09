@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import { nanoid } from 'nanoid';
 
@@ -10,12 +10,11 @@ const FileUploader = ({ addToFilePropList }) => {
 
     const uploadBtn = useRef(null);
     const progressbarRef = useRef(null);
-    const barWidthRef = useRef(null);
     const progressRef = useRef(null);
+    const barWidthRef = useRef(null);
 
     let barWidth = 0;
     let interval = null;
-    
 
     const makeProgress = () => {
         interval = setInterval(() => {
@@ -29,15 +28,18 @@ const FileUploader = ({ addToFilePropList }) => {
                     progressRef.current.innerHTML = '';
                     progressbarRef.current.style.display = 'none';
                     setFileValue('');
-                    setExtension('upload');
                     uploadBtn.current.style.display = 'block';
                     const { name, lastModified, lastModifiedDate, size, type } = fileProps;
-                    
                     addToFilePropList({ name, lastModified, lastModifiedDate, size, type, extension, id: nanoid(10) });
                 }, 1000);
             }
         }, 10);
     }
+
+    useEffect(() => {
+        let ext = fileValue.substring(fileValue.lastIndexOf('.') + 1, fileValue.length);
+        setExtension(setExtensionEffect(ext));
+    }, [fileValue]);
 
     const handleSubmit = evt => {
         evt.preventDefault();
@@ -53,28 +55,6 @@ const FileUploader = ({ addToFilePropList }) => {
         const { value, files } = evt.target;
         fileProps = files[0];
         setFileValue(value);
-        let ext = value.substring(value.lastIndexOf('.') + 1, value.length);
-    
-        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-        const docExtensions = ['pdf', 'code', 'contract', 'csv', 'excel', 'word'];
-        const videoExtensions = ['mp4', 'mpeg4', 'vid', '3gp'];
-        const audioExtensions = ['mp3', 'ogg'];
-
-        if (imageExtensions.includes(ext)) {
-            setExtension('image');
-        }
-        else if (docExtensions.includes(ext)) {
-            setExtension(docExtensions[docExtensions.indexOf(ext)]);
-        }
-        else if (videoExtensions.includes(ext)) {
-            setExtension('video');
-        }
-        else if (audioExtensions.includes(ext)) {
-            setExtension('audio');
-        }
-        else {
-            setExtension('alt')
-        }
     }
     
     const styles = {
@@ -84,10 +64,9 @@ const FileUploader = ({ addToFilePropList }) => {
             width: `${barWidth}%`
         }
     };
-
     return (
         <div className="file-upload-panel">
-            <div className="extension-image"><span><i className={`fa fa-file-${extension}`} /></span></div>
+            <div className="extension-image"><span><i className={`fa fa-${extension}`} /></span></div>
             <form onSubmit={handleSubmit}>
                 <div>
                     <input type="file" value={fileValue} onChange={handleOnChange} />
@@ -100,6 +79,24 @@ const FileUploader = ({ addToFilePropList }) => {
             <div className="progress-text" ref={progressRef}></div>
         </div>
     );
+}
+
+const setExtensionEffect = extension => {
+    switch (true) {
+        case ['txt', 'log'].includes(extension): return 'file-alt';
+        case ['doc', 'docx'].includes(extension): return 'file-word';
+        case 'excel' === extension: return 'file-excel';
+        case 'csv' === extension: return 'file-csv';
+        case 'pptx' === extension: return 'file-powerpoint';
+        case ['mp3', 'ogg', 'wave'].includes(extension): return 'file-audio';
+        case ['mp4', 'mpeg4', 'avi', '3gp'].includes(extension): return 'file-video';
+        case ['png', 'jpeg', 'jpg', 'webm', 'ico', 'gif'].includes(extension): return 'file-image';
+        case 'pdf' === extension: return 'file-pdf';
+        case ['bat', 'exe'].includes(extension): return 'file-code';
+        case ['html', 'java', 'js', 'jsx', 'ts', 'py', 'css', 'php'].includes(extension): return 'file-code';
+        case ['zip', 'tar', 'apk', 'jar'].includes(extension): return 'file-archive';
+        default: return 'upload';
+    }
 }
 
 export default FileUploader;
